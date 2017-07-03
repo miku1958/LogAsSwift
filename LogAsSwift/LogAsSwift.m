@@ -105,7 +105,7 @@ void repalceLog(const char *type, const void *voidObject){
 			@try {
 				//如果开了Exception Breakpoint会停在这里,继续就行了
 				//为了通用,这里import的是<Foundation/Foundation.h>,所以找不到section这个属性
-				id section = [indexPathObject valueForUndefinedKey:@"section"];
+				id section = [indexPathObject valueForKeyPath:@"section"];
 				[str appendString:string(@"\tsection = %d",[section integerValue])];
 			} @catch (NSException *exception) {
 				[str appendString:string(@"\tsection = unknwon")];
@@ -114,7 +114,7 @@ void repalceLog(const char *type, const void *voidObject){
 			@try {
 				//如果开了Exception Breakpoint会停在这里,继续就行了
 				//如果是使用[NSIndexPath indexPathWithIndex:]来初始化的,内部的_indexes[1]不会有值,也就会崩溃
-				id row = [indexPathObject valueForUndefinedKey:@"row"];
+				id row = [indexPathObject valueForKeyPath:@"row"];
 				[str appendString:string(@",row(item) = %d\n",[row integerValue])];
 			} @catch (NSException *exception) {
 				[str appendString:string(@",row(item) = unknwon\n")];

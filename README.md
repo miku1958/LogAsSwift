@@ -31,6 +31,8 @@
 	newLog("下班啦")
 	newLog(CGRectZero)
 	newLog([NSIndexPath new])
+	NSUInteger i = 10;
+	newLog([NSIndexPath indexPathWithIndexes:&i length:10])
 	
 等等等等
 打印如下:
@@ -43,7 +45,14 @@
 	1
 	下班啦
 	CGRect: {{0, 0}, {0, 0}}
-	<NSIndexPath: 0x10030de60> {length = 0, path = }
+	NSIndexPath:{
+		length = 0
+		section = unknwon,row(item) = unknwon
+	}
+	NSIndexPath:{
+		length = 10
+		section = unknwon,row(item) = unknwon
+	}
 	
 ## 其他:
 以上的newLog都可以用print代替,用法一样
