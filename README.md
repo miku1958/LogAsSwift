@@ -31,8 +31,6 @@
 	newLog("下班啦")
 	newLog(CGRectZero)
 	newLog([NSIndexPath new])
-	NSUInteger i = 10;
-	newLog([NSIndexPath indexPathWithIndexes:&i length:10])
 	
 等等等等
 打印如下:
@@ -53,6 +51,15 @@
 		length = 10
 		section = unknwon,row(item) = unknwon
 	}
+
+如果在iOS项目下(import了UIKit)打印NSIndexPath:
+	newLog([NSIndexPath indexPathForRow:1 inSection:1])
+打印如下:
+	NSIndexPath:{
+		length = 2
+		section = 1,row(item) = 1
+	}
+
 	
 ## 其他:
 以上的newLog都可以用print代替,用法一样
