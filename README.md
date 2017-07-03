@@ -19,7 +19,7 @@
 
 所以这里用桥接的方式做了处理,如果有其他好的办法请务必推荐给我
 
-也就是说,如果你想手动导入用百度地图SDK的bitcode版就不能用这个工具了.....
+也就是说,如果你想手动导入用百度地图SDK的bitcode版就不能用这个工具打印基本数据类型和结构体了.....
 
 其余说明请查看头文件
 
@@ -37,6 +37,7 @@
 	newLog([NSIndexPath new])
 	
 等等等等
+
 打印如下:
 
 	Hello, World!
@@ -51,14 +52,12 @@
 		length = 0
 		section = unknwon,row(item) = unknwon
 	}
-	NSIndexPath:{
-		length = 10
-		section = unknwon,row(item) = unknwon
-	}
 
 如果在iOS项目下(import了UIKit)打印NSIndexPath:
+
 	newLog([NSIndexPath indexPathForRow:1 inSection:1])
 打印如下:
+
 	NSIndexPath:{
 		length = 2
 		section = 1,row(item) = 1
