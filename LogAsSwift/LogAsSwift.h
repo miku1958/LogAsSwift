@@ -33,13 +33,18 @@ void repalceLog(const char *type, const void *object);
 	//按照字符串数组的办法来修改普通数组,却发现指针指向的内容是不同的....所以为也不知道怎么弄了,对内存不是很熟
 
 #ifdef DEBUG
-//MARK:	稍微提升一下性能,这里也用#ifdef DEBUG来判断
+#pragma mark - 稍微提升一下性能,这里也用#ifdef DEBUG来判断
 
+#if __cplusplus
+#pragma mark - C++下的打印只能打印NS对象
+//在OC++下不能用 (__typeof__(object) []){ object }转换成const void*类型,只能用下面的方法,但是用下面的方法就不能直接打印基本数据类型了
+#define newLog(object) repalceLog(@encode(__typeof__(object)), (__bridge void *)object);
+#else
 //gcc要求在头文件中使用__typeof__而不是typeof(虽然也没有问题)
 #define newLog(object) repalceLog(@encode(__typeof__(object)), (__typeof__(object) []){ object });
-	//在OC++下不能用 (__typeof__(object) []){ object }转换成const void*类型,只能用下面的方法,但是用下面的方法就不能直接打印基本数据类型了
-	//#define newLog(object) repalceLog(@encode(__typeof__(object)), (__bridge void *)object);
-#define print(object) repalceLog(@encode(__typeof__(object)), (__typeof__(object) []){ object });
+#endif
+
+#define print(object) newLog(object)
 
 #define NSLog(...) newLog(string(__VA_ARGS__))
 	//这是为了应对第三方/遗留的大量NSLog做的处理
@@ -48,11 +53,9 @@ void repalceLog(const char *type, const void *object);
 #else
 //详细说明查看debug版本
 
-#define newLog(object)
-
-#define print(object)
-
-#define NSLog(...)
+	#define newLog(object)
+	#define print(object)
+	#define NSLog(...)
 
 
 #endif
