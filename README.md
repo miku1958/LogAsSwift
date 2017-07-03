@@ -1,10 +1,12 @@
 # LogAsSwift
 
 ## 简介
-本代码在转换指针到OC对象和C基本数据类型的部分,修改自
+本代码在转换指针到OC对象和C基本数据类型的部分,参考自
 
 	https://github.com/stanislaw/NSStringFromAnyObject
-并对算法做了逻辑简化和增加了对C语言字符串数组的解析(还是不能解析普通数组,无解)
+并对算法做了逻辑简化优化
+
+增加了对C语言字符串数组的解析(但还是不能解析普通数组,无解)
 
 ## 简介2
 虽然叫LogAsSwift但并不能实现swift的
